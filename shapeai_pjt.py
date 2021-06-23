@@ -1,5 +1,5 @@
 import requests
-#import os
+
 from datetime import datetime
 
 api_key = 'be0077544091cb4bfe9d0c2767d65513'
@@ -9,12 +9,14 @@ complete_api_link = "https://api.openweathermap.org/data/2.5/weather?q=" + locat
 api_link = requests.get(complete_api_link)
 api_data = api_link.json()
 
-#create variables to store and display data
+#Fetch data (json)
 temp_city = ((api_data['main']['temp']) - 273.15)
 weather_desc = api_data['weather'][0]['description']
 hmdt = api_data['main']['humidity']
 wind_spd = api_data['wind']['speed']
 date_time = datetime.now().strftime("%d %b %Y | %I:%M:%S %p")
+
+#file is opened in write mode
 f = open("output.txt", "w")
 f.write("Weather Stats for - {}  || {}".format(location.upper(), date_time)) 
 f.write("\n")
